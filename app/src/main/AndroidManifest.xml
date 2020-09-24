@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.emailvarificationapp">
+    package="com.example.Dtu_connect">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".App"
+        android:name="com.example.Dtu_connect.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,20 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UploadChoice"></activity>
-        <activity android:name=".DownloadNotes"></activity>
-        <activity android:name=".UploadNotes"></activity>
+        <activity android:name="com.example.Dtu_connect.UploadChoice"></activity>
+        <activity android:name="com.example.Dtu_connect.DownloadNotes"></activity>
+        <activity android:name="com.example.Dtu_connect.UploadNotes"></activity>
         <activity
-            android:name=".Feedspage"
+            android:name="com.example.Dtu_connect.Feedspage"
             android:label="@string/title_activity_feedspage"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Comment" />
-        <activity android:name=".LikeByList" />
-        <activity android:name=".users" />
-        <activity android:name=".Profile" />
-        <activity android:name=".Add" />
-        <activity android:name=".inside" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.example.Dtu_connect.Comment" />
+        <activity android:name="com.example.Dtu_connect.LikeByList" />
+        <activity android:name="com.example.Dtu_connect.users" />
+        <activity android:name="com.example.Dtu_connect.Profile" />
+        <activity android:name="com.example.Dtu_connect.Add" />
+        <activity android:name="com.example.Dtu_connect.inside" />
+        <activity android:name="com.example.Dtu_connect.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.example.Dtu_connect.ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
 
         <meta-data
@@ -49,7 +49,7 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
 
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.example.Dtu_connect.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
