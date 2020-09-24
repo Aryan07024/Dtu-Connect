@@ -1,4 +1,4 @@
-package com.example.emailvarificationapp;
+package com.example.emailvarificationapp.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.emailvarificationapp.Comment;
+import com.example.emailvarificationapp.LikeByList;
+import com.example.emailvarificationapp.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -144,7 +147,7 @@ public class MyAdapter extends ArrayAdapter {
         likedis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,LikeByList.class);
+                Intent intent = new Intent(context, LikeByList.class);
                 intent.putExtra("list",likeby.get(poition));
                 context.startActivity(intent);
 
@@ -154,7 +157,7 @@ public class MyAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
 
-                 Intent intent = new Intent(context,Comment.class);
+                 Intent intent = new Intent(context, Comment.class);
                 intent.putExtra("commentBy",commentBy.get(poition));
                intent.putExtra("comment",commentlist.get(poition));
                intent.putExtra("id",id.get(poition));

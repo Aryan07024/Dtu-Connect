@@ -1,4 +1,4 @@
-package com.example.emailvarificationapp;
+package com.example.emailvarificationapp.Adapters;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -31,13 +31,14 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.emailvarificationapp.BuildConfig;
+import com.example.emailvarificationapp.R;
+import com.example.emailvarificationapp.Upload;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -90,7 +91,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         holder.itv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = new File("/storage/emulated/0/Android/data/"+BuildConfig.APPLICATION_ID+"/files/Notes/Download Notes"+File.separator+notes.getName()+".pdf");
+                File file = new File("/storage/emulated/0/Android/data/"+ BuildConfig.APPLICATION_ID+"/files/Notes/Download Notes"+File.separator+notes.getName()+".pdf");
                 if(file.exists()) {
                     openfile(file.getAbsolutePath());
                     Log.d("upload", "onClick: already exists");

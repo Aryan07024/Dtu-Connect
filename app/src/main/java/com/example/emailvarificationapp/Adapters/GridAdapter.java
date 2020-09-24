@@ -1,4 +1,4 @@
-package com.example.emailvarificationapp;
+package com.example.emailvarificationapp.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.emailvarificationapp.Comment;
+import com.example.emailvarificationapp.LikeByList;
+import com.example.emailvarificationapp.List_Data;
+import com.example.emailvarificationapp.R;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;

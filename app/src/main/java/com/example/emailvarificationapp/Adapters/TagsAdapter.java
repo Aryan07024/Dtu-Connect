@@ -1,4 +1,4 @@
-package com.example.emailvarificationapp;
+package com.example.emailvarificationapp.Adapters;
 
 
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.emailvarificationapp.R;
 
 import java.util.ArrayList;
 

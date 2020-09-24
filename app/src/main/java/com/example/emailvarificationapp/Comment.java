@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.emailvarificationapp.Adapters.CommentAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
