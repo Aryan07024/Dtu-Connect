@@ -17,7 +17,10 @@ import android.widget.Toast;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         Toast.makeText(this,"pressed",Toast.LENGTH_SHORT).show();
 
         try {
-            ParseUser user = new ParseUser();
+            final ParseUser user = new ParseUser();
             user.setUsername( un.getText().toString());
             user.setEmail(email.getText().toString());
             user.setPassword(pass.getText().toString());
@@ -61,7 +64,26 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
                     if(e==null)
                     {
                         ParseUser.logOut();
-                        alertDisplayer("Account Created Successfully !","Please Verify Email ",false);
+
+                        user.put("branch","");
+                        user.put("batch","");
+                        user.put("language",new ArrayList<>());
+                        user.put("skill",new ArrayList<>());
+                        user.put("projectName",new ArrayList<>());
+                        user.put("projectDes",new ArrayList<>());
+                        user.put("projectUrl",new ArrayList<>());
+                        user.put("insta","");
+                        user.put("linkedin","");
+                        user.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e==null)
+                                {
+                                    alertDisplayer("Account Created Successfully !","Please Verify Email ",false);
+                                }
+
+                            }
+                        });
                     }
                     else {
                         ParseUser.logOut();
