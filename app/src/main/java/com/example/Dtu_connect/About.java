@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Dtu_connect.Adapters.Language_SkillAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -208,6 +210,44 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.profile);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId())
+                {
+                    case R.id.add:
+                        startActivity(new Intent(getApplicationContext(),UploadChoice.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.home: {
+                        startActivity(new Intent(getApplicationContext(),Feedspage.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    }
+                    case R.id.users:
+                        startActivity(new Intent(getApplicationContext(),users.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+
+                return false;
+            }
+        });
+
+
+
+
+
+
+
 
         progressBar = findViewById(R.id.ProfileProgressBar);
         TextView change = findViewById(R.id.image);
