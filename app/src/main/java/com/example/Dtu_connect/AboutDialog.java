@@ -64,7 +64,7 @@ public class AboutDialog extends DialogFragment {
                         {
                             final String Name = name.getText().toString();
                             final String Branch = branch.getText().toString();
-                            final String Batch = branch.getText().toString();
+                            final String Batch = batch.getText().toString();
                             final String Des = des.getText().toString();
 
                             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("InFo");

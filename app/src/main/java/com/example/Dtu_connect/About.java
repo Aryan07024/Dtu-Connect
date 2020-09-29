@@ -233,7 +233,7 @@ public class About extends AppCompatActivity {
                         return true;
                     }
                     case R.id.users:
-                        startActivity(new Intent(getApplicationContext(),users.class));
+                        startActivity(new Intent(getApplicationContext(),UserList.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -256,6 +256,13 @@ public class About extends AppCompatActivity {
         Intent intent = getIntent();
         String email = intent.getStringExtra("user");
         getUserData(email);
+
+        String emails = ParseUser.getCurrentUser().getEmail();
+        Toast.makeText(this, ""+email+"  "+ emails, Toast.LENGTH_SHORT).show();
+        if(emails.equals(email))
+        {
+            edit=true;
+        }
 
         if(edit)
         {
@@ -283,12 +290,7 @@ public class About extends AppCompatActivity {
             });
         }
 
-        String emails = ParseUser.getCurrentUser().getEmail();
-        Toast.makeText(this, ""+userData.email+"  "+ emails, Toast.LENGTH_SHORT).show();
-        if(emails.equals(email))
-        {
-            edit=true;
-        }
+
         TextView about = findViewById(R.id.about);
         TextView lan = findViewById(R.id.language);
         TextView skill = findViewById(R.id.skill);

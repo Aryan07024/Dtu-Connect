@@ -21,9 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.ProgressCallback;
 import com.parse.SaveCallback;
@@ -177,17 +179,45 @@ public class Add extends AppCompatActivity {
 
                 switch (menuItem.getItemId())
                 {
-                    case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(),Profile.class));
-                        overridePendingTransition(0,0);
-                        return true;
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),Feedspage.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.profile: {
+                        ParseQuery<ParseObject> query = new ParseQuery("InFo");
+                        query.whereEqualTo("email", ParseUser.getCurrentUser().getEmail());
 
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> objects, ParseException e) {
+                                if(e==null)
+                                {
+                                    if(objects!=null)
+                                    {
+                                        if(objects.size()>0)
+                                        {
+
+                                            for(ParseObject object:objects)
+                                            {
+                                                String email = object.getString("email");
+                                                Toast.makeText(getApplicationContext(), ""+ email, Toast.LENGTH_SHORT).show();
+
+                                                Intent intent = new Intent(getApplicationContext(),About.class);
+                                                intent.putExtra("user",email);
+                                                startActivity(intent);
+                                                overridePendingTransition(0,0);
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        });
+
+                        return true;
+                    }
                     case R.id.users:
-                        startActivity(new Intent(getApplicationContext(),users.class));
+                        startActivity(new Intent(getApplicationContext(),UserList.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -196,6 +226,7 @@ public class Add extends AppCompatActivity {
                 return false;
             }
         });
+
 
         if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
         {

@@ -56,18 +56,19 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
 
         List<String> empty = new ArrayList<>();
+        empty.add(" ");
         ParseObject object = new ParseObject("InFo");
 
         object.put("email",email.getText().toString());
-        object.put("Branch","");
-        object.put("Batch","");
+        object.put("Branch","Not mention");
+        object.put("Batch","Not mention");
         object.put("language",empty);
         object.put("skill",empty);
         object.put("project",empty);
         object.put("projecturl",empty);
         object.put("insta","");
         object.put("linkedin","");
-        object.put("name","");
+        object.put("name",un.getText().toString());
         object.put("des","");
 
         object.put("image",file);
