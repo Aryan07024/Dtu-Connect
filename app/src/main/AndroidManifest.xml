@@ -29,7 +29,6 @@
         <activity android:name=".users" />
         <activity android:name=".Profile" />
         <activity android:name=".Add" />
-        <activity android:name=".inside" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

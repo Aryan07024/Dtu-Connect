@@ -98,7 +98,7 @@ public class Add extends AppCompatActivity {
                 if(e==null)
                 {
                     Toast.makeText(getApplicationContext(),"uploaded",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),inside.class));
+                    startActivity(new Intent(getApplicationContext(),Feedspage.class));
                 }
 
                 else

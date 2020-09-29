@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnKeyListen
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         if(!error) {
-                            Intent intent = new Intent(LoginActivity.this, inside.class);
+                            Intent intent = new Intent(LoginActivity.this, Feedspage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }

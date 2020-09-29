@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.Dtu_connect.Adapters.MyAdapter;
+import com.example.Dtu_connect.Adapters.PhotoAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -26,39 +26,42 @@ import java.util.List;
 import static com.parse.Parse.getApplicationContext;
 
 
-public class photofeed extends ListFragment {
-    ArrayList<Date> postdate= new ArrayList<>();
+public class Mainfeed extends ListFragment {
+
+    ArrayList<Date>postdate= new ArrayList<>();
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> caption=new ArrayList<>();
     ArrayList<String> photo =new ArrayList<>();
     ArrayList<String> id = new ArrayList<>();
     ArrayList<ArrayList<String>> likeby =new ArrayList<ArrayList<String>>();
     ArrayList<Integer> likes = new ArrayList<>();
-    ListView feed;
-    MyAdapter adapter;
     ArrayList<ArrayList<String>> commentBy=new ArrayList<ArrayList<String>>();
     ArrayList<ArrayList<String>> comment =new ArrayList<ArrayList<String>>();
-    public photofeed() {
+    public static ListView Feedlist;
+    public static PhotoAdapter adapter1;
+
+    public Mainfeed() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view= inflater.inflate(R.layout.fragment_photofeed, container, false);
-
-        if(ParseUser.getCurrentUser()==null)
-        {
-            Toast.makeText(getContext(),"You are Logout Please Signin back",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(),LoginActivity.class));
-        }
+        // Inflate the layout for this fragment
+        View view =inflater.inflate(R.layout.fragment_mainfeed, container, false);
 
 
         if(ParseUser.getCurrentUser()==null)
         {
             Toast.makeText(getContext(),"You are Logout Please Signin back",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(),LoginActivity.class));
+            startActivity(new Intent(getContext(),LoginActivity.class));
         }
 
         if(ParseUser.getCurrentUser().get("isFollowing")==null)
@@ -70,7 +73,7 @@ public class photofeed extends ListFragment {
 
         ParseQuery<ParseObject> query =new ParseQuery<ParseObject>("Image");
 
-        query.whereContainedIn("username",ParseUser.getCurrentUser().getList("isFollowing"));
+       // query.whereContainedIn("username",ParseUser.getCurrentUser().getList("isFollowing"));
         query.orderByDescending("createdAt");
 
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -102,7 +105,7 @@ public class photofeed extends ListFragment {
                             // Toast.makeText(getApplicationContext(),object.getObjectId(),Toast.LENGTH_SHORT).show();
 
 //                            Toast.makeText(getApplicationContext(),String.valueOf(id.size())+id.get(0),Toast.LENGTH_SHORT).show();
-                            adapter.notifyDataSetChanged();
+                            adapter1.notifyDataSetChanged();
                         }
                     }
 
@@ -114,20 +117,10 @@ public class photofeed extends ListFragment {
             }
         });
 
-         //Toast.makeText(getContext(),id.size(),Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(getContext(), "hey", Toast.LENGTH_SHORT).show();
-        adapter=new MyAdapter(getActivity(),postdate,name,photo, caption, id, likes, likeby, commentBy, comment);
-        setListAdapter(adapter);
-        /*feed=(ListView)view.findViewById(R.id.photofeeds);
-        feed.setAdapter(adapter);
-        feed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("ckeck click","done"+position);
-            }
-        });*/
 
+        adapter1 = new PhotoAdapter(getActivity(),photo,postdate,name,caption,id,likes,likeby,commentBy,comment);
+        setListAdapter(adapter1);
         return view;
     }
 }

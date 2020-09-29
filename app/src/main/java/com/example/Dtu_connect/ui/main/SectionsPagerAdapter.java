@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.Dtu_connect.Mainfeed;
 import com.example.Dtu_connect.R;
 import com.example.Dtu_connect.notes;
-import com.example.Dtu_connect.photofeed;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -36,7 +36,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         {
             case 0:
             {
-                frag = new photofeed();
+                frag = new Mainfeed();
                 break;
             }
             case 1:
