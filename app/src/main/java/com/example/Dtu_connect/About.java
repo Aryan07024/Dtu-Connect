@@ -16,12 +16,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.Dtu_connect.Adapters.Language_SkillAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -253,6 +257,28 @@ public class About extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AboutDialog dialog = new AboutDialog(userData);
+                dialog.show(getSupportFragmentManager(),"");
+            }
+        });
+        lan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               LanguageDialog dialog = new LanguageDialog(userData);
+               dialog.show(getSupportFragmentManager(),"");
+               // showAlertDialog();
+            }
+        });
+        skill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SkillDialog dialog = new SkillDialog(userData);
+                dialog.show(getSupportFragmentManager(),"");
+            }
+        });
+        pro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProjectDialog dialog = new ProjectDialog(userData);
                 dialog.show(getSupportFragmentManager(),"");
             }
         });
