@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".About"></activity>
+        <activity android:name=".UserList"></activity>
+        <activity android:name=".About" />
         <activity android:name=".UploadChoice" />
         <activity android:name=".DownloadNotes" />
         <activity android:name=".UploadNotes" />

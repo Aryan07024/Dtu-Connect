@@ -122,7 +122,7 @@ public class Feedspage extends AppCompatActivity {
                         return true;
                     }
                     case R.id.users:
-                        startActivity(new Intent(getApplicationContext(),users.class));
+                        startActivity(new Intent(getApplicationContext(),UserList.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

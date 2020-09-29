@@ -184,7 +184,8 @@ public class About extends AppCompatActivity {
                             for(ParseObject object:objects)
                             {
                                 ParseFile file=(ParseFile)object.getParseFile("image");
-                                Picasso.with(getApplicationContext()).load(file.getUrl()).into(profilepic);
+                                userData.image=file;
+                                Picasso.with(getApplicationContext()).load(userData.image.getUrl()).into(profilepic);
                                 userData.name=  object.getString("name");
                                // Toast.makeText(getApplicationContext(), ""+userData.name, Toast.LENGTH_SHORT).show();
                                 userData.email = object.getString("email");
