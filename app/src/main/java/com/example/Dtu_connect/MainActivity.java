@@ -4,8 +4,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,16 +18,75 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.ProgressCallback;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
     EditText un,email,pass;
+
+    public void intiinfo()
+    {
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.profile);
+        ByteArrayOutputStream stream =new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+        byte[] byteArray = stream.toByteArray();
+
+        ParseFile file = new ParseFile("profileimage.png",byteArray);
+        file.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+                if(e!=null)
+                {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        List<String> empty = new ArrayList<>();
+        ParseObject object = new ParseObject("InFo");
+
+        object.put("email",email.getText().toString());
+        object.put("Branch","");
+        object.put("Batch","");
+        object.put("language",empty);
+        object.put("skill",empty);
+        object.put("project",empty);
+        object.put("projecturl",empty);
+        object.put("insta","");
+        object.put("linkedin","");
+        object.put("name","");
+        object.put("des","");
+
+        object.put("image",file);
+
+        object.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e==null)
+                {
+                    Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();;
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Try again later", Toast.LENGTH_SHORT).show();;
+                }
+            }
+        });
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
                 public void done(ParseException e) {
                     if(e==null)
                     {
+                        intiinfo();
                         ParseUser.logOut();
+
 
                         user.put("branch","");
                         user.put("batch","");

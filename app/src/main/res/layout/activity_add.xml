@@ -35,7 +35,23 @@
         android:text="Let World Know it"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/buttonlayout2"/>
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:id="@+id/progress"
+        android:visibility="invisible"
+        android:layout_width="205dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caption"
+        android:outlineAmbientShadowColor="@color/newBlue"
+        android:outlineSpotShadowColor="@color/blackToWhite"></ProgressBar>
 
     <EditText
         android:id="@+id/caption"
@@ -47,7 +63,9 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/bt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="fill_vertical"
+        android:background="@drawable/buttonlayout2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

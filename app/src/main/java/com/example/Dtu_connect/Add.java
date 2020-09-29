@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.ProgressCallback;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
@@ -40,9 +42,11 @@ public class Add extends AppCompatActivity {
     Bitmap bitmap;
     TextView caption;
 
+    ProgressBar progressBar;
     public void upload(View view)
     {
 
+        view.setVisibility(View.INVISIBLE);
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
@@ -68,6 +72,24 @@ public class Add extends AppCompatActivity {
         object.put("username",ParseUser.getCurrentUser().getUsername());
         object.put("postdate",date);
         object.put("Content",String.valueOf(caption.getText()));
+        progressBar.setVisibility(View.VISIBLE);
+        file.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+
+                } else
+                    Toast.makeText(getApplicationContext(), "error try again", Toast.LENGTH_SHORT).show();
+            }
+        }, new ProgressCallback() {
+            @Override
+            public void done(Integer percentDone) {
+                progressBar.setProgress(0);
+                progressBar.setProgress(percentDone);
+                if(percentDone==100)
+                    progressBar.setVisibility(View.GONE);
+            }
+        });
         object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -83,6 +105,8 @@ public class Add extends AppCompatActivity {
                 }
             }
         });
+
+        view.setVisibility(View.VISIBLE);
 
     }
 
@@ -134,6 +158,7 @@ public class Add extends AppCompatActivity {
         setTitle("LET THE WORLD KNOW");
         caption = (TextView)findViewById(R.id.caption);
 
+        progressBar = (ProgressBar)findViewById(R.id.progress);
         if(ParseUser.getCurrentUser()==null)
         {
             Toast.makeText(this,"You are Logout Please Signin back",Toast.LENGTH_SHORT).show();
